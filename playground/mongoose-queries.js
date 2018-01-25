@@ -25,4 +25,3 @@ User.findById('5a695dda173a37b00ed25899').then((user) => {
 }, (e) => {
   console.log(e);
 });
-
