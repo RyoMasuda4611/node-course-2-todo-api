@@ -109,12 +109,13 @@ app.get('/users/me', authenticate, (req, res) => {
 
 app.post('/users/login', (req, res) => {
   var body = _.pick(req.body, ['email', 'password']);
+
   User.findByCredentials(body.email, body.password).then((user) => {
     return user.generateAuthToken().then((token) => {
-      res.header('x-auth', token).send(user);  
-    });  
+      res.header('x-auth', token).send(user);
+    });
   }).catch((e) => {
-    res.status(400).send(e);
+    res.status(400).send();
   });
 });
 
@@ -123,3 +124,5 @@ app.listen(port, () => {
 });
 
 module.exports = {app};
+
+
